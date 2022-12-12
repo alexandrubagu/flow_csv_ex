@@ -6,5 +6,5 @@ defmodule FlowCSVEx.Generator.Behaviour do
   @callback name() :: binary()
   @callback switch() :: keyword()
   @callback value() :: any()
-  @callback assertion(any(), any()) :: boolean()
+  @callback assertion(any()) :: (map() -> boolean())
 end

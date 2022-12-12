@@ -5,15 +5,8 @@ defmodule FlowCSVEx.Generator.Name do
 
   @behaviour FlowCSVEx.Generator.Behaviour
 
-  @spec name() :: binary()
   def name(), do: "name"
-
-  @spec switch() :: keyword()
   def switch(), do: [name: :string]
-
-  @spec value() :: binary()
   def value(), do: Faker.Person.name()
-
-  @spec assertion(any(), any()) :: boolean
-  def assertion(filter, value), do: filter == value
+  def assertion(value), do: fn data -> data[name()] == value end
 end
