@@ -25,9 +25,9 @@ defmodule Mix.Tasks.Csv.Filter do
 
   defp filter_csv(opts) do
     "input.csv"
-    |> File.stream!()
+    |> File.stream!(read_ahead: 100_000)
     |> CSV.decode!(headers: @csv_headers)
-    |> FlowCSVEx.Filtering.run(opts)
+    |> FlowCSVEx.FilteringWithFlow.run(opts)
     |> CSV.encode(headers: @csv_headers)
     |> Stream.into(File.stream!("output.csv", [:write, :utf8]))
     |> Stream.run()
